@@ -1,0 +1,27 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+	xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+
+	<ui:style>
+		.container {
+			width: 400px;
+			height: 300px;
+			padding-top: 240px;
+			margin: auto;
+		}
+		
+		.text-label {
+			color: #3B5998;
+			text-align: center;
+			width: 400px;
+			text-decoration: none;
+			font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+			font-size: 20pt;
+		}
+	</ui:style>
+
+	<g:HTMLPanel styleName="{style.container}">
+		<g:Label ui:field="text" styleName="{style.text-label}" />
+	</g:HTMLPanel>
+
+</ui:UiBinder>

@@ -1,0 +1,43 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:a="urn:import:com.anonymbook.client.ui.components">
+
+	<ui:style>
+		
+		.olderQuestionsPanel {
+			background-color: #EDEFF4;
+			border: 1px solid #D8DFEA;
+			cursor: pointer;
+			color: #3B5998;
+			text-decoration: none;
+			width: 448px;
+			margin: 10px 0px 10px 0px;
+			display: block;
+		}
+		
+		.olderQuestionsPanel:hover {
+			background-color: #d8dfea;
+		}
+		
+		.answerBody {
+			height: auto;
+			width: 473px;
+			display: block;
+			position: relative;
+			overflow: hidden;
+		}
+	</ui:style>
+
+	<g:HTMLPanel>
+
+		<a:FilterComponent ui:field="filter" />
+
+		<div>
+			<g:HTMLPanel ui:field="answerBody"/>
+			
+			<a:OlderQuestion ui:field="olderQuestion" styleName="{style.olderQuestionsPanel}"/>
+		</div>
+
+	</g:HTMLPanel>
+
+</ui:UiBinder> 

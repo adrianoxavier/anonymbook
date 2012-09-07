@@ -1,0 +1,101 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:a="urn:import:com.anonymbook.client.ui">
+
+	<ui:image field="anonymLogo" src="../images/logo.png" />
+
+	<ui:style>
+		body {
+			margin: 0;
+			padding: 0;
+		}
+		
+		.anonym {
+			width: 760px;
+			margin: 0 auto 0;
+			padding: 0;
+		}
+		
+		.anonym-body {
+			top: 40px;
+			height: 100%;
+			width: 170px;
+			position: relative;
+		}
+		
+		.anonymContent {
+			position: relative;
+			display: block;
+			overflow: hidden;
+			height: auto;
+		}
+		
+		.anonym-contentpanel {
+			position: absolute;
+			top: 40px;
+			margin-left: 171px;
+			background: white;
+			border-left: 1px solid Silver;
+			border-right: 1px solid Silver;
+			border-bottom: 1px solid Silver;
+			width: 587px;
+			height: 90%;
+		}
+		
+		ul {
+			list-style-type: none;
+			padding: 0;
+			margin: 3px 0 0 0;
+		}
+		
+		.anonymAd {
+			display: block;
+			width: auto;
+			height: 90px;
+			position: relative;
+			padding-bottom: 10px;
+			width: 728px;
+		}
+		
+		.anonymAdTitle {
+			background-color: #F2F2F2;
+			border-bottom: medium none;
+			border-top: 1px solid #E2E2E2;
+			padding: 4px 5px 5px;
+			margin: 10px 0 10px 0;
+			direction: ltr;
+			font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+			font-size: 11px;
+			text-align: left;
+			font-weight: bold;
+		}
+	</ui:style>
+
+	<g:HTMLPanel styleName="{style.anonym}">
+	
+		<a:AnonymTop ui:field="top" />
+		
+		<a:AnonymHeader ui:field="header" />
+		
+		<div class="{style.anonymContent}">
+			<a:AnonymLeft ui:field="left" />
+			<a:AnonymRight ui:field="right" />
+		</div>
+		
+		<div class="{style.anonymAd}">
+		
+			<div class='{style.anonymAdTitle}'>
+				<g:Label ui:field="adLabel" />
+			</div>
+			
+			<iframe
+				src="http://ads.lfstmedia.com/fbslot/slot19998?ad_size=728x90&amp;adkey=de8"
+				width="728" height="90" frameborder="no" allowTransparency="true"
+				framespacing="0" scrolling="no">
+			</iframe>
+			
+		</div>
+		
+	</g:HTMLPanel>
+
+</ui:UiBinder> 

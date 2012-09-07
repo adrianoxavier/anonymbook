@@ -1,0 +1,66 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:a="urn:import:com.anonymbook.client.ui">
+
+	<ui:image field="anonymLogo" src="../images/logo.png" />
+
+	<ui:style>
+		.anonym-header {
+			background-color: #3B5998;
+			display: block;
+			height: 40px;
+			width: 704px;
+			margin: 0px;
+			padding: 0px;
+			position: relative;
+		}
+		
+		.anonym-logo-Image {
+			margin: 10px 0px 0px 5px;
+			cursor: pointer;
+		}
+		
+		.anonym-home {
+			background: #627AAD;
+			cursor: pointer;
+			color: #FFFFFF;
+			display: inline-block;
+			float: right;
+			font-weight: bold;
+			height: 22px;
+			padding: 8px 10px 0;
+			text-decoration: none;
+			font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+			font-size: 11px;
+			text-align: left;
+		}
+		
+		.anonym-home:hover {
+			background: #6d86b7;
+		}
+		
+		.button-panel {
+			border-color: #1D4088 #1D4088 -moz-use-text-color;
+			border-style: solid solid none;
+			border-width: 1px 1px 0;
+			display: block;
+			right: 0px;
+			top: 0px;
+			height: auto;
+			width: 523px;
+			background: #627AAD;
+			margin: 9px 0 0 0;
+			position: absolute;
+		}
+	</ui:style>
+
+	<g:HTMLPanel styleName='{style.anonym-header}'>
+		<g:Image resource='{anonymLogo}' styleName='{style.anonym-logo-Image}' />
+		<div class="{style.button-panel}">
+			<g:Anchor ui:field="help" styleName='{style.anonym-home}' />
+			<g:Anchor ui:field="quickQuestion" styleName='{style.anonym-home}' />
+			<g:Anchor ui:field="home" styleName='{style.anonym-home}' />
+		</div>
+	</g:HTMLPanel>
+
+</ui:UiBinder> 

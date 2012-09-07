@@ -1,6 +1,9 @@
 *.class
+.gwt
+test-classes
+war/anonymbook
+war/anonymbook_fb_connect
 
 # Package Files #
-*.jar
 *.war
 *.ear

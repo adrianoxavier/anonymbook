@@ -1,0 +1,37 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:q="urn:import:com.anonymbook.client.quickquestion">
+	<ui:style>
+		.user-wall {
+			margin-right: 20px;
+			margin-left: 20px;
+			font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+			font-size: 11px;
+			min-height: 700px;
+		}
+		
+		.user-wall-name-container {
+			display: inline-table;
+			width: 100%;
+			border-bottom: 1px solid #CCCCCC;
+			margin-bottom: 15px;
+			font-weight: bold;
+			color: #1C2A47;
+			font-size: 20px;
+			padding: 5px 0 12px;
+		}
+		
+		.user-friends-icon {
+			display: inline-block !important;
+		}
+	</ui:style>
+	<g:HTMLPanel styleName="{style.user-wall}">
+		<div class="{style.user-wall-name-container}">
+			<label ui:field="nameLabel" />
+			<label class="{style.user-friends-icon} ui-icon ui-icon-triangle-1-e" />
+			<label ui:field="titleLabel" />
+		</div>
+
+		<g:HTMLPanel ui:field="quickQuestionPanel" />
+	</g:HTMLPanel>
+</ui:UiBinder> 

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
+	<application>anonymbook</application>
+	<version>2</version>
+
+	<!-- Configure serving/caching of GWT files -->
+	<static-files>
+		<include path="**" />
+
+		<!-- The following line requires App Engine 1.3.2 SDK -->
+		<include path="**.nocache.*" expiration="0s" />
+
+		<include path="**.cache.*" expiration="365d" />
+		<exclude path="**.gwt.rpc" />
+	</static-files>
+
+	<precompilation-enabled>true</precompilation-enabled>
+	<sessions-enabled>true</sessions-enabled>
+	<threadsafe>true</threadsafe>
+
+	<inbound-services>
+		<service>warmup</service>
+	</inbound-services>
+
+</appengine-web-app>

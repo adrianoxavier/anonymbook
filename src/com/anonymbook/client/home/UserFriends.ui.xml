@@ -1,0 +1,162 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	
+	<ui:image field="icon" src="../images/button-icon.png" />
+	<ui:image field="xButton" src="../images/xbutton.png" />
+
+	<ui:style field="style" type="com.anonymbook.client.home.UserFriends.Style">
+		.user-friends {
+			margin-right: 20px;
+			margin-left: 20px;
+			font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+			font-size: 11px;
+			min-height: 700px;
+		}
+		.user-friends-name {
+			font-weight: bold;
+			color: #1C2A47;
+			font-size: 20px;
+			display: block;
+			border: none;
+		}
+		.user-friends-icon {
+			display: inline-block !important;
+		}
+		.user-friends-invite-container {
+			margin-top: 10px;
+			width: 463px;
+			height: 30px;
+			text-align: left;
+			display: block;
+			border: none;
+		}
+		@sprite .user-friends-invite {
+			gwt-image: "icon";
+			background-repeat: no-repeat;
+			background-position: 0 0;
+			padding-left: 25px;
+			background-color: #637bad;
+			height: 22px;
+			width: auto;
+			color: white;
+			font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+			font-weight: bold;
+			font-size: 13px;
+			text-align: left;
+			border: 1px solid #29447e;
+			cursor: pointer;
+		}
+		.user-friends-invite:HOVER {
+			background-color: #4f6aa3;
+		}
+		.user-friends-search-container {
+			background-color: #F2F2F2;
+			margin-top: 10px;
+			width: 463px;
+			height: 25px;
+			padding: 6px 7px 6px 5px;
+		}
+		.user-friends-search-container label{
+			background-color: #e5e5e5;
+			font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+			font-size: 11px;
+			text-align: left;
+			font-weight: bold;
+			padding: 5px;
+			border: 1px solid #999;
+			display: inline-block;
+		}
+		.user-friends-search {
+			width: 320px;
+			padding: 5px;
+			font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+			font-size: 11px;
+			text-align: left;
+			border: 1px solid #DDD;
+			display: table-cell;
+		}
+		.user-friends-container {
+			margin: 0px;
+			padding: 0px;
+			height: auto;
+			padding-bottom: 20px;
+			width: 473px;
+			display: block;
+			position: relative;
+			overflow: hidden;
+		}
+		.user-friends-container ul,.user-friends-container li {
+			padding: 0px;
+			margin: 0px;
+			list-style: none;
+		}
+		.user-friends-container li {
+			height: 50px;
+			line-height: 50px;
+			width: 470px;
+			vertical-align: middle;
+			padding: 5px;
+			display: block;
+			float: left;
+			border-top: 1px solid #e9e9e9;
+		}
+		.user-friends-container a {
+			color: #3B5998;
+			text-decoration: none;
+			cursor: pointer;
+			font-size: 13pt;
+			font-weight: bold;
+		}
+		@sprite .userFriendListXbutton {
+			gwt-image: "xButton";
+			background-position: 0 0;
+			float: right;
+			display: inline-block;
+			max-width: 15px;
+			vertical-align: top;
+			margin-top: 18px;
+			height: 15px;
+			width: 15px;
+		}
+		
+		.userFriendListXbutton:hover {
+			background-position: 0 -30px;
+		}
+		
+		.userFriendListXbutton:active {
+			background-position: 0 -45px;
+		}
+		.userFriendListImage {
+			margin-right: 10px;
+			float: left;
+			cursor: pointer;
+		}
+		.userFriendListName {
+			padding-top: 3px;
+			overflow: hidden;
+			float: left;
+			word-wrap: normal;
+		}
+	</ui:style>
+
+	<g:HTMLPanel styleName="{style.user-friends}">
+
+		<div class="{style.user-friends-name}">
+			<label ui:field="nameLabel" />
+			<label class="{style.user-friends-icon} ui-icon ui-icon-triangle-1-e" />
+			<label ui:field="friendsLabel" />
+		</div>
+		
+		<div class="{style.user-friends-search-container}">
+			<label ui:field="searchLabel"  />
+			<input ui:field="search" class="{style.user-friends-search}" />
+		</div>
+
+		<div class="{style.user-friends-container}">
+			<ul ui:field="friendsList" />
+		</div>
+
+	</g:HTMLPanel>
+
+</ui:UiBinder> 

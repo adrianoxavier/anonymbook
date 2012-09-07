@@ -1,0 +1,108 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:c="urn:import:com.anonymbook.client.ui.components">
+	<ui:style>
+		.quickQuestionBody {
+			background: white;
+			border: solid #E9E9E9 1px;
+			padding: 10px;
+		}
+		
+		.bottomBar {
+			background: #f2f2f2;
+			border-top: #CCC;
+			margin: 0px -10px -10px;
+			padding: 3px 10px 3px 10px;
+		}
+		
+		.user-wall-askComponent {
+			padding-left: 10px;
+		}
+		
+		.anonymTextAreaButton {
+			display: block;
+			border-style: solid;
+			border-width: 1px;
+			cursor: pointer;
+			font-size: 11px;
+			font-weight: bold;
+			line-height: normal !important;
+			padding: 4px 6px;
+			text-align: center;
+			text-decoration: none;
+			vertical-align: top;
+			white-space: nowrap;
+			direction: ltr;
+			font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+		}
+		
+		.user-wall-name-container {
+			display: block;
+			border-bottom: 1px solid #CCCCCC;
+			margin-bottom: 5px;
+			font-weight: bold;
+			color: #1C2A47;
+			font-size: 15px;
+			padding: 5px 0 6px;
+			margin-left: 10px;
+			margin-right: 10px;
+		}
+		
+		.gray {
+			background-color: #f3f2f3;
+			border-color: #999;
+			color: #333;
+		}
+		
+		.gray:active {
+			background-color: #dddddd;
+		}
+		
+		.blue {
+			background-color: #5B74A8;
+			border-color: #29447E #29447E #1A356E;
+			color: #FFFFFF;
+		}
+		
+		.blue:active {
+			background-color: #4F6AA3;
+		}
+	</ui:style>
+	<g:HTMLPanel styleName="{style.quickQuestionBody}">
+		<table>
+			<tbody>
+				<tr>
+					<td align="center" style="vertical-align: top; width:100px;">
+						<img ui:field="recipientImage"
+							style="display: block; max-height: 200px; max-width: 100px; margin-bottom: 10px;" />
+					</td>
+					<td style="vertical-align: top; width:350px;">
+						<div class="{style.user-wall-name-container}">
+							<g:Label ui:field="recipientName" />
+						</div>
+
+						<c:AskComponent ui:field="askComponent"
+							styleName="{style.user-wall-askComponent}" />
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<g:HTMLPanel styleName="{style.bottomBar}">
+			<table>
+				<tbody>
+					<tr>
+						<td width="100%" />
+						<td>
+							<g:Button ui:field="askButton"
+								addStyleNames="{style.anonymTextAreaButton} {style.blue}" />
+						</td>
+						<td>
+							<g:Button ui:field="skipButton"
+								addStyleNames="{style.anonymTextAreaButton} {style.gray}" />
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</g:HTMLPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 
