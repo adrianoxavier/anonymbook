@@ -1,0 +1,121 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:a="urn:import:com.anonymbook.client.ui">
+
+	<ui:image field="icon" src="../images/icon.png" />
+
+	<ui:style>
+		.anonym-top {
+			height: 61px;
+			width: 704px;
+			display: block;
+			overflow: hidden;
+			margin: 0px;
+			padding: 0px;
+		}
+		
+		.anonym-top-left {
+			width: 41px;
+			margin: 8px 10px 0 10px;
+			padding: 0px;
+			float: left;
+			display: block;
+		}
+		
+		.anonym-top-right {
+			width: 300px;
+			margin: 4px;
+			padding-top: 6px;
+			display: block;
+   			float: left;
+		}
+		
+		.anonym-top-label {
+			font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+			font-size: 12px;
+			text-align: left;
+			color: #3b5998;
+			cursor: pointer;
+		}
+		
+		.anonym-top-label-app {
+			font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+			font-size: 14px;
+			text-align: left;
+			color: #3b5998;
+			font-weight: bold;
+			cursor: pointer;
+			text-decoration: none;
+		}
+		
+		.anonym-top-link {
+			text-decoration: none;
+		}
+		
+		.anonym-top-link:HOVER {
+			text-decoration: underline;
+		}
+		
+		.anonym-top-iframe {
+			border: none;
+			overflow: hidden;
+			width: 100px;
+			height: 20px;
+			display: block;
+		}
+		
+		.anonym-top-review {
+			display: block;
+			float: right;
+			width: auto;
+			overflow: hidden;
+			padding-top: 15px;
+		}
+		
+		.anonym-top-review a, .anonym-top-review label {
+			font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+			font-size: 12px;
+			text-align: right;
+			color: #333;
+			text-decoration: none;
+			font-weight: bold;
+			cursor: pointer;
+		}
+		
+		.anonym-top-review:HOVER {
+			text-decoration: underline;
+		}
+	</ui:style>
+
+	<g:HTMLPanel styleName="{style.anonym-top}">
+		<a href="https://www.facebook.com/apps/application.php?id=100923886651872"
+			class="{style.anonym-top-link}">
+			<div class="{style.anonym-top-left}">
+				<g:Image resource="{icon}" />
+			</div>
+		</a>
+		<div class="{style.anonym-top-right}">
+
+			<a href="http://www.facebook.com/apps/application.php?id=100923886651872"
+				class="{style.anonym-top-link}">
+				<label class="{style.anonym-top-label-app}"> Anonymbook </label>
+				<label class="{style.anonym-top-label}"> on Facebook </label>
+			</a>
+			<iframe
+				src="https://www.facebook.com/plugins/like.php?href=apps.facebook.com/anonymbook&amp;layout=button_count&amp;show_faces=true&amp;width=450&amp;action=like&amp;font=lucida+grande&amp;colorscheme=light&amp;height=20"
+				scrolling="no" frameborder="0" allowTransparency="true"
+				class="{style.anonym-top-iframe}">
+			</iframe>
+		</div>
+
+		<div class="{style.anonym-top-review}">
+			<a ui:field="reviewLink" >
+				<label ui:field="reviewLabel" />
+				<label style="color:#efd600;">&#9733;&#9733;&#9733;&#9733;&#9733;</label>
+				<label ui:field="reviewLabelEnd" />
+			</a>
+		</div>
+
+	</g:HTMLPanel>
+
+</ui:UiBinder> 

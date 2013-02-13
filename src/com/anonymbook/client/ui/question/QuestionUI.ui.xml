@@ -1,0 +1,252 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:d="urn:import:com.google.gwt.dom.client"
+	xmlns:a="urn:import:com.anonymbook.client.ui.components" xmlns:q="urn:import:com.anonymbook.client.ui.question">
+
+	<ui:image field="responseTop" src="../../images/responsetop.png" />
+	<ui:image field="xButton" src="../../images/xbutton.png" />
+	<ui:image field="arrow" src="../../images/tooltip.gif" />
+	<ui:image field="icon" src="../../images/iconSmall.png" />
+	<ui:image field="twitterIcon" src="../../images/twitter.png" />
+
+	<ui:style>
+		@sprite .xbutton {
+			gwt-image: "xButton";
+			background-position: 0 0;
+			float: right;
+			margin: -2px -35px 0 0;
+			display: inline-block;
+			vertical-align: top;
+			margin-left: 10px;
+			position: relative;
+			height: 15px;
+			width: 15px;
+			cursor: pointer;
+		}
+		
+		.xbutton:hover {
+			background-position: 0 -30px;
+		}
+		
+		.xbutton:active {
+			background-position: 0 -45px;
+		}
+		
+		.questionBlock {
+			word-wrap: break-word;
+			font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+			font-size: 11px;
+			text-align: left;
+			padding-bottom: 10px;
+			padding-top: 10px;
+			border-color: #E9E9E9;
+			border-width: 1px 0 0;
+			border-style: solid;
+			display: block;
+			padding-right: 35px;
+		}
+		
+		@sprite .responsetop {
+			gwt-image: "responseTop";
+			background-repeat: no-repeat;
+			display: block;
+			height: 5px;
+			margin-left: 17px;
+			width: 9px;
+		}
+		
+		.responseBody {
+			background-color: #EDEFF4;
+			border-bottom: 1px solid #E5EAF1;
+			display: block;
+			padding: 5px 5px 5px 5px;
+			margin-bottom: 2px;
+			position: relative;
+			overflow: hidden;
+		}
+		
+		.questionText {
+			display: block;
+			vertical-align: top;
+			margin: 0 0 5px;
+			width: 385px;
+		}
+		
+		.personAnchor {
+			font-weight: bold;
+			color: #3B5998;
+			text-decoration: none;
+			padding-bottom: 3px;
+		}
+		
+		.timeStamp {
+			padding-top: 2px;
+			color: #808080;
+			font-weight: normal;
+			font-size: 11px;
+			display: block;
+			position: relative;
+			overflow: hidden;
+			height: 22px;
+			width: auto;
+			line-height: 22px;
+			vertical-align: middle;
+		}
+		
+		.timeStampLabel {
+			display: block;
+			float: left;
+		}
+		
+		.removeButton {
+			float: right;
+			margin: -2px -35px 0 0;
+			display: inline-block;
+			max-width: 200px;
+			vertical-align: top;
+			margin-left: 10px;
+			margin-left: 10px;
+			position: relative;
+		}
+		
+		.recipientImage {
+			height: 50px;
+			width: 50px;
+			diplay: block;
+			margin-right: 10px;
+			float: left;
+			cursor: pointer;
+		}
+		
+		.questionImage {
+			height: 32px;
+			width: 32px;
+			diplay: none;
+			margin-right: 5px;
+			float: left;
+		}
+		
+		.bodyQA {
+			display: block;
+			padding-left: 60px;
+			vertical-align: top;
+		}
+		
+		.tooltip {
+			position: absolute;
+			top: -26px;
+		}
+		
+		.tooltipText {
+			padding: 5px 8px 4px 8px;
+			background-color: black;
+			color: white;
+			text-align: center;
+			font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+			font-size: 11px;
+			text-align: left;
+			direction: ltr;
+			width: auto;
+			display: block;
+			margin: 0;
+		}
+		
+		@sprite .tooltipArrow {
+			gwt-image: "arrow";
+			background-repeat: no-repeat;
+			height: 5px;
+			bottom: 0;
+			margin-left: 10px;
+			background-position: bottom;
+			z-index: 1000;
+		}
+		
+		.tb-container {
+			display: block;
+			float: left;
+			cursor: pointer;
+			padding-left: 15px;
+		}
+		
+		@sprite .tb {
+			gwt-image: "twitterIcon";
+			background-color: transparent;
+			background-attachment: scroll;
+			background-repeat: no-repeat;
+			background-position: 0 0;
+			display: block;
+			float: left;
+			height: 20px;
+		}
+		
+		.tb:hover {
+			background-position: 0 -21px;
+		}
+		
+		.resendButton {
+			color: #3B5998;
+			cursor: pointer;
+		}
+		
+		.resendButton:HOVER {
+			text-decoration: underline;
+		}
+		
+	</ui:style>
+
+
+	<g:HTMLPanel styleName="{style.questionBlock}" ui:field="rootPanel">
+
+		<g:Anchor ui:field="xButtonElem" styleName="{style.xbutton}" />
+
+		<div style="position: relative;">
+			<g:HTMLPanel ui:field="tooltip" styleName="{style.tooltip}">
+				<g:HTMLPanel tag="p" ui:field="tooltipText" styleName="{style.tooltipText}" />
+				<g:Image resource='{arrow}' styleName="{style.tooltipArrow}" />
+			</g:HTMLPanel>
+		</div>
+
+		<g:Image ui:field="userImageBig" styleName="{style.recipientImage}" />
+
+		<g:HTMLPanel styleName="{style.bodyQA}">
+
+			<g:Label ui:field='anonymText' styleName="{style.personAnchor}" />
+
+			<g:Label ui:field='questionText' styleName="{style.questionText}" />
+
+			<g:HTMLPanel styleName="{style.timeStamp}">
+				<label ui:field='questionTS' class="{style.timeStampLabel}" />
+				<g:Label ui:field='reSendSeparator' styleName="{style.timeStampLabel}">&nbsp;&#183;&nbsp;</g:Label>
+				<g:Anchor ui:field='reSendButton' addStyleNames="{style.timeStampLabel} {style.resendButton}" />
+				<g:Label ui:field='shareLabel' styleName="{style.timeStampLabel}">&nbsp;&#183;&nbsp;</g:Label>
+				<g:Anchor ui:field='shareButton' addStyleNames="{style.timeStampLabel} {style.resendButton}" />
+				<a ui:field="twitter">
+					<span class="{style.tb-container}">
+						<span class="{style.tb}" />
+					</span>
+				</a>
+			</g:HTMLPanel>
+
+			<g:HTMLPanel tag="ul" ui:field="responseBlock">
+
+				<li class="{style.responsetop}" />
+
+				<g:HTMLPanel ui:field="answerList" tag="li" />
+
+				<g:HTMLPanel styleName="{style.responseBody}" ui:field="notAnswered"
+					tag="li">
+					<g:Image ui:field="questionUserImage" styleName="{style.questionImage}" />
+					<g:Image ui:field="questionIconImage" resource="{icon}"
+						styleName="{style.questionImage}" />
+					<div style="display:table;;margin-left:35px;width:340px;">
+						<a:AnonymTextArea ui:field="textArea" />
+					</div>
+				</g:HTMLPanel>
+
+			</g:HTMLPanel>
+
+		</g:HTMLPanel>
+
+	</g:HTMLPanel>
+
+</ui:UiBinder> 

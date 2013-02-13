@@ -1,6 +1,13 @@
 *.class
+.gwt/**
+.gwt-unitCache/**
+test-classes/**
+/war/anonymbook/**
+/war/anonymbook_fb_connect/**
+/war/WEB-INF/classes
+/war/WEB-INF/deploy
+/war/WEB-INF/appengine-generated
 
 # Package Files #
-*.jar
 *.war
 *.ear

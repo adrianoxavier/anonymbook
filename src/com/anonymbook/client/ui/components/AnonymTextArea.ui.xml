@@ -1,0 +1,71 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+
+	<ui:style>
+		.textArea {
+			font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+			font-size: 11px;
+			resize: none !important;
+			outline: none !important;
+			overflow: hidden;
+			display: block;
+			border: 0;
+			max-width: 100%;
+			width: 100%;
+		}
+		
+		.anonymTextAreaButton {
+			color: #FFFFFF;
+			background: none repeat scroll 0 0 #5B74A8;
+			border-bottom-color: #29447E;
+			display: block;
+			float: right;
+			margin-top: 5px;
+			background-color: #5B74A8;
+			background-position: 0 -48px;
+			border-color: #29447E #29447E #1A356E;
+			border-style: solid;
+			border-width: 1px;
+			cursor: pointer;
+			font-size: 11px;
+			font-weight: bold;
+			line-height: normal !important;
+			padding: 4px 6px;
+			text-align: center;
+			text-decoration: none;
+			vertical-align: top;
+			white-space: nowrap;
+			direction: ltr;
+			font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+		}
+		
+		.anonymTextAreaButton:active {
+			background: #4F6AA3;
+		}
+		
+		.leftCharacters {
+			color: #999999;
+			float: right;
+			margin: 5px 5px 0 0;
+			font-size: 14px;
+		}
+		
+		.submit {
+			display: block;
+			height: 30px;
+		}
+	</ui:style>
+
+	<g:HTMLPanel>
+		<div
+			style="display:block; border: 1px solid #BDC7D8; background:white; padding: 4px 5px 5px 5px;">
+			<g:TextArea ui:field="textArea" styleName="{style.textArea}" />
+		</div>
+		<g:HTMLPanel ui:field="submitPanel" styleName="{style.submit}">
+			<g:Button ui:field="anonymTextAreaButton" styleName="{style.anonymTextAreaButton}" />
+			<g:Label ui:field="remainingChar" styleName="{style.leftCharacters}" />
+		</g:HTMLPanel>
+	</g:HTMLPanel>
+
+</ui:UiBinder> 

@@ -1,0 +1,119 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:a="urn:import:com.anonymbook.client.ui.components">
+
+	<ui:image field="xButton" src="../../images/xbutton.png" />
+	<ui:image field="arrow" src="../../images/tooltip.gif" />
+	<ui:image field="icon" src="../../images/iconSmall.png" />
+
+	<ui:style>
+		@sprite .xbutton {
+			gwt-image: "xButton";
+			background-position: 0 0;
+			float: right;
+			margin: 0;
+			display: inline-block;
+			vertical-align: top;
+			margin-left: 10px;
+			position: relative;
+			height: 15px;
+			width: 15px;
+			cursor: pointer;
+		}
+		
+		.xbutton:hover {
+			background-position: 0 -30px;
+		}
+		
+		.xbutton:active {
+			background-position: 0 -45px;
+		}
+		
+		.responseBody {
+			background-color: #EDEFF4;
+			border-bottom: 1px solid #E5EAF1;
+			display: block;
+			padding: 5px 5px 5px 5px;
+			margin-bottom: 2px;
+		}
+		
+		.diss {
+			display: block;
+		}
+		
+		.pictureBlock {
+			display: block;
+			width: 32px !important;
+			height: 32px !important;
+			float: left;
+			margin-right: 6px;
+		}
+		
+		.commentArea {
+			display: block;
+			margin-left: 40px;
+			vertical-align: top;
+			width: 100000px;
+		}
+		
+		.answerInfo {
+			color: #808080;
+			font-weight: normal;
+			font-size: 11px;
+			margin-left: 5px;
+			display: table-row;
+		}
+		
+		.timeStampAnswerCell {
+			padding: 2px 0 0 0;
+			display: table-cell;
+		}
+		
+		.shareButton {
+			color: #3B5998;
+			cursor: pointer;
+		}
+		
+		.shareButton:hover {
+			text-decoration: underline;
+		}
+		
+		.questionTextResponse {
+			display: block;
+			vertical-align: top;
+			width: 340px;
+		}
+		
+		.personAnchorAnswer {
+			font-weight: bold;
+			color: #3B5998;
+			text-decoration: none;
+			padding-bottom: 3px;
+			cursor: pointer;
+		}
+	</ui:style>
+
+
+	<g:HTMLPanel ui:field="rootPanel" styleName="{style.responseBody}">
+		<g:Anchor ui:field="xButtonElem" styleName="{style.xbutton}" />
+		<g:HTMLPanel styleName="{style.diss}">
+			<g:Image ui:field="userImage" styleName="{style.pictureBlock}" />
+			<g:Image ui:field="iconImage" resource="{icon}" styleName="{style.pictureBlock}" />
+			
+			<g:HTMLPanel styleName="{style.commentArea}">
+
+				<g:Anchor ui:field="userName" styleName="{style.personAnchorAnswer}" />
+
+				<g:Label ui:field="answerText" styleName="{style.questionTextResponse}" />
+
+				<g:HTMLPanel styleName="{style.answerInfo}">
+					<g:Label ui:field='answerTS' styleName="{style.timeStampAnswerCell}" />
+					<g:Label ui:field='shareSeparator' styleName="{style.timeStampAnswerCell}">&nbsp;&#183;&nbsp;</g:Label>
+					<g:Anchor ui:field='buttonShare' addStyleNames="{style.timeStampAnswerCell} {style.shareButton}" />
+				</g:HTMLPanel>
+
+			</g:HTMLPanel>
+
+		</g:HTMLPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 

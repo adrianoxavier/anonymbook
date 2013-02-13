@@ -1,0 +1,53 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style ui:field="styleX">
+		.filter {
+			display: block;
+			height: 15px;
+			padding: 15px 10px 5px 0;
+		}
+		
+		.filter-container {
+			float: right;
+			width: 100%;
+		}
+		
+		.filter-label {
+			display: table-cell;
+			font-weight: bold;
+			font-size: 13px;
+			float: right;
+		}
+		
+		.filter-label-separator {
+			display: table-cell;
+			font-size: 13px;
+			float: right;
+		}
+		
+		.filter-anchor {
+			display: table-cell;
+			font-weight: normal;
+			cursor: pointer;
+			color: #3B5998;
+			float: right;
+		}
+	</ui:style>
+	<g:HTMLPanel styleName="{style.filter}">
+		<div class="{style.filter-container}">
+			<g:Anchor styleName="{style.filter-anchor}" ui:field="allQuestions" />
+			<g:Label styleName="{style.filter-label}" ui:field="allQuestionsLabel" />
+
+			<g:Label styleName="{style.filter-label-separator}" ui:field="separator1" >&nbsp;&#183;&nbsp;</g:Label>
+
+			<g:Anchor styleName="{style.filter-anchor}" ui:field="askedByOthers" />
+			<g:Label styleName="{style.filter-label}" ui:field="askedByOthersLabel" />
+
+			<g:Label styleName="{style.filter-label-separator}" ui:field="separator2" >&nbsp;&#183;&nbsp;</g:Label>
+
+			<g:Anchor styleName="{style.filter-anchor}" ui:field="askedByMe" />
+			<g:Label styleName="{style.filter-label}" ui:field="askedByMeLabel" />
+		</div>
+	</g:HTMLPanel>
+</ui:UiBinder> 

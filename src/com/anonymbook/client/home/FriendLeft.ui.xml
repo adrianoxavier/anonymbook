@@ -1,0 +1,82 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+
+	<ui:image field="imgWall" src="../images/wall.png" />
+	<ui:image field="imgQuick" src="../images/quickQuestion.png" />
+
+	<ui:style field="style" type="com.anonymbook.client.home.FriendLeft.Style">
+		.anonym-left ul,.anonym-left li {
+			padding: 0px;
+			margin: 0px;
+			list-style: none;
+		}
+		
+		.anonym-left ul {
+			margin: 5px 0 5px 0;
+		}
+		
+		.anonym-left-image {
+			padding: 0px;
+			margin: 0 5px 5px 5px;
+		}
+		
+		.anonym-left-menu {
+			padding: 0px;
+			margin: 0px;
+			vertical-align: middle;
+		}
+		
+		.anonym-left-button {
+			cursor: pointer;
+			color: #333333;
+			display: inline-block;
+			width: 163px;
+			line-height: 13px;
+			padding: 2px 8px 2px 8px;
+			margin: 0px;
+		}
+		
+		.anonym-left-button:HOVER {
+			cursor: pointer;
+			background-color: #EFF2F7;
+			color: #333333;
+			display: inline-block;
+			width: 163px;
+			line-height: 13px;
+			padding: 2px 8px 2px 8px;
+			margin: 0px;
+		}
+		
+		.anonymLeftButtonSelected {
+			background-color: #D8DFEA;
+			font-weight: bold;
+		}
+		
+		.anonym-left-button label {
+			cursor: pointer;
+			color: #333333;
+			display: inline-table;
+			line-height: 13px;
+			margin-left: 5px;
+		}
+	</ui:style>
+
+	<g:HTMLPanel styleName="{style.anonym-left}">
+
+		<img ui:field="profileImage" class="{style.anonym-left-image}" />
+
+		<ul>
+			<li>
+				<a ui:field="wall" class="{style.anonym-left-button}">
+					<span class="{style.anonym-left-menu}">
+						<g:Image resource="{imgWall}" />
+					</span>
+					<label ui:field="wallLabel" />
+				</a>
+			</li>
+		</ul>
+
+	</g:HTMLPanel>
+
+</ui:UiBinder> 

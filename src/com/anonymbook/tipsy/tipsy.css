@@ -1,0 +1,81 @@
+@external  .tipsy*
+
+.tipsy {
+	padding: 5px;
+	font-size: 10px;
+	position: absolute;
+	z-index: 100000;
+}
+
+.tipsy-inner {
+	padding: 5px 8px 4px 8px;
+	background-color: black;
+	color: white;
+	max-width: 200px;
+	text-align: center;
+	font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
+    font-size: 11px;
+    text-align: left;
+}
+
+@sprite .tipsy-arrow {
+	gwt-image: "tipsyGif";
+	position: absolute;
+	background-position: top left;
+	background-repeat: no-repeat;
+	width: 9px;
+	height: 5px;
+	z-index: 12000;
+}
+
+.tipsy-n .tipsy-arrow {
+	top: 0;
+	left: 50%;
+	margin-left: -4px;
+}
+
+.tipsy-nw .tipsy-arrow {
+	top: 0;
+	left: 10px;
+}
+
+.tipsy-ne .tipsy-arrow {
+	top: 0;
+	right: 10px;
+}
+
+.tipsy-s .tipsy-arrow {
+	bottom: 0;
+	left: 50%;
+	margin-left: -4px;
+	background-position: bottom left;
+}
+
+.tipsy-sw .tipsy-arrow {
+	bottom: 0;
+	left: 10px;
+	background-position: bottom ;
+}
+
+.tipsy-se .tipsy-arrow {
+	bottom: 0;
+	right: 10px;
+	background-position: bottom left;
+}
+
+.tipsy-e .tipsy-arrow {
+	top: 50%;
+	margin-top: -4px;
+	right: 0;
+	width: 5px;
+	height: 9px;
+	background-position: top right;
+}
+
+.tipsy-w .tipsy-arrow {
+	top: 50%;
+	margin-top: -4px;
+	left: 0;
+	width: 5px;
+	height: 9px;
+}
