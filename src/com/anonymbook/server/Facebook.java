@@ -33,8 +33,7 @@ public final class Facebook {
 
 	private static Logger logger = LoggerFactory.getLogger(Facebook.class);
 
-	private static String encode(String url)
-			throws UnsupportedEncodingException {
+	private static String encode(String url) throws UnsupportedEncodingException {
 		return URLEncoder.encode(url, "UTF-8");
 	}
 
@@ -43,29 +42,22 @@ public final class Facebook {
 		String token = null;
 
 		try {
-			String param = "oauth/access_token?client_id=" + appId
-					+ "&grant_type=client_credentials&client_secret="
-					+ appSecret;
+			String param = "oauth/access_token?client_id=" + appId + "&grant_type=client_credentials&client_secret=" + appSecret;
 
 			URL url = new URL(fbGraphUrl + param);
 
-			URLFetchService urlFetchService = URLFetchServiceFactory
-					.getURLFetchService();
-			HTTPResponse resp = urlFetchService.fetch(new HTTPRequest(url,
-					HTTPMethod.GET, FetchOptions.Builder
-							.doNotValidateCertificate()));
+			URLFetchService urlFetchService = URLFetchServiceFactory.getURLFetchService();
+			HTTPResponse resp = urlFetchService.fetch(new HTTPRequest(url, HTTPMethod.GET, FetchOptions.Builder.doNotValidateCertificate()));
 
 			String result = new String(resp.getContent());
 
 			if (result != null && result.startsWith("access_token")) {
 				token = result;
 			}
-
 		} catch (Exception exception) {
 			token = null;
 			logger.error(format("Ocorreu o erro '%s'.", exception));
 		}
-
 		return token;
 	}
 
@@ -76,28 +68,21 @@ public final class Facebook {
 		if (userToken == null) {
 			return friendList;
 		}
-
 		try {
-			String query = "select uid from user where uid in (select uid2 from friend where uid1="
-					+ uid + ") and is_app_user=1";
-			String param = "method/fql.query?query=" + encode(query)
-					+ "&access_token=" + encode(userToken) + "&format=json";
+			String query = "select uid from user where uid in (select uid2 from friend where uid1=" + uid + ") and is_app_user=1";
+			String param = "method/fql.query?query=" + encode(query) + "&access_token=" + encode(userToken) + "&format=json";
 
 			URL url = new URL(fbApiUrl + param);
 
-			URLFetchService urlFetchService = URLFetchServiceFactory
-					.getURLFetchService();
-			HTTPResponse resp = urlFetchService.fetch(new HTTPRequest(url,
-					HTTPMethod.GET, FetchOptions.Builder
-							.doNotValidateCertificate()));
+			URLFetchService urlFetchService = URLFetchServiceFactory.getURLFetchService();
+			HTTPResponse resp = urlFetchService.fetch(new HTTPRequest(url, HTTPMethod.GET, FetchOptions.Builder.doNotValidateCertificate()));
 
 			String result = new String(resp.getContent());
 
 			JsonArray json = new JsonParser().parse(result).getAsJsonArray();
 
 			for (int i = 0; i < json.size(); i++) {
-				friendList.add(json.get(i).getAsJsonObject().get("uid")
-						.getAsString());
+				friendList.add(json.get(i).getAsJsonObject().get("uid").getAsString());
 			}
 
 		} catch (Exception exception) {
@@ -120,17 +105,12 @@ public final class Facebook {
 		try {
 			token = token.split("=")[1];
 
-			String param = userId + "/apprequests?message="
-					+ encode(message) + "&access_token="
-					+ encode(token)+ "&method=post";
+			String param = userId + "/apprequests?message=" + encode(message) + "&access_token=" + encode(token)+ "&method=post";
 
 			URL url = new URL(fbGraphUrl + param);
 
-			URLFetchService urlFetchService = URLFetchServiceFactory
-					.getURLFetchService();
-			HTTPResponse resp = urlFetchService.fetch(new HTTPRequest(url,
-					HTTPMethod.GET, FetchOptions.Builder
-							.doNotValidateCertificate()));
+			URLFetchService urlFetchService = URLFetchServiceFactory.getURLFetchService();
+			HTTPResponse resp = urlFetchService.fetch(new HTTPRequest(url, HTTPMethod.GET, FetchOptions.Builder.doNotValidateCertificate()));
 
 			result = new String(resp.getContent());
 
@@ -159,11 +139,8 @@ public final class Facebook {
 
 			URL url = new URL(fbGraphUrl + param);
 
-			URLFetchService urlFetchService = URLFetchServiceFactory
-					.getURLFetchService();
-			HTTPResponse resp = urlFetchService.fetch(new HTTPRequest(url,
-					HTTPMethod.GET, FetchOptions.Builder
-							.doNotValidateCertificate()));
+			URLFetchService urlFetchService = URLFetchServiceFactory.getURLFetchService();
+			HTTPResponse resp = urlFetchService.fetch(new HTTPRequest(url, HTTPMethod.GET, FetchOptions.Builder.doNotValidateCertificate()));
 
 			String result = new String(resp.getContent());
 
@@ -193,11 +170,8 @@ public final class Facebook {
 
 			URL url = new URL(fbGraphUrl + param);
 
-			URLFetchService urlFetchService = URLFetchServiceFactory
-					.getURLFetchService();
-			HTTPResponse resp = urlFetchService.fetch(new HTTPRequest(url,
-					HTTPMethod.GET, FetchOptions.Builder
-							.doNotValidateCertificate()));
+			URLFetchService urlFetchService = URLFetchServiceFactory.getURLFetchService();
+			HTTPResponse resp = urlFetchService.fetch(new HTTPRequest(url, HTTPMethod.GET, FetchOptions.Builder.doNotValidateCertificate()));
 
 			String result = new String(resp.getContent());
 
@@ -206,7 +180,6 @@ public final class Facebook {
 		} catch (Exception exception) {
 			logger.error(format("Ocorreu o erro '%s'.", exception));
 		}
-
 		return json;
 	}
 
@@ -224,21 +197,16 @@ public final class Facebook {
 			token = token.split("=")[1];
 
 			String param = requestId + "&access_token=" + encode(token);
-
 			URL url = new URL(fbGraphUrl + param);
 
-			URLFetchService urlFetchService = URLFetchServiceFactory
-					.getURLFetchService();
-			HTTPResponse resp = urlFetchService.fetch(new HTTPRequest(url,
-					HTTPMethod.DELETE, FetchOptions.Builder
-							.doNotValidateCertificate()));
+			URLFetchService urlFetchService = URLFetchServiceFactory.getURLFetchService();
+			HTTPResponse resp = urlFetchService.fetch(new HTTPRequest(url, HTTPMethod.DELETE, FetchOptions.Builder.doNotValidateCertificate()));
 
 			result = new String(resp.getContent());
 
 		} catch (Exception exception) {
 			logger.error(format("Ocorreu o erro '%s'.", exception));
 		}
-
 		return result;
 	}
 

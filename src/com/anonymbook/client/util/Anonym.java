@@ -25,6 +25,11 @@ public final class Anonym {
 	/*-{
 		return object[key];
 	}-*/;
+	
+	public static native JavaScriptObject getObj(JavaScriptObject object, String key)
+	/*-{
+		return object[key];
+	}-*/;
 
 	public static native void redirect(String url)
 	/*-{

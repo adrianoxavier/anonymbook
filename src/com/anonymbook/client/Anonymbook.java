@@ -18,6 +18,7 @@ import com.google.gwt.dom.client.Element;
 import com.google.gwt.i18n.client.LocaleInfo;
 import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.RootPanel;
 
 public class Anonymbook implements EntryPoint {
 
@@ -45,16 +46,23 @@ public class Anonymbook implements EntryPoint {
 		FB.init(appId);
 
 		JavaScriptObject session = FB.getSession();
+				
 		if (session != null) {
 			init(session);
 		} else {
 			renderLoginButton();
 		}
 
-		FB.Event.subscribe("auth.login", new JavaScriptCallback() {
+		FB.Event.subscribe("auth.authResponseChange", new JavaScriptCallback() {
 			@Override
-			public void onEvent(JavaScriptObject data) {
-				reload();
+			public void onEvent(JavaScriptObject session) {
+				if (Anonym.get(session, "status").equals("connected")) {
+					
+					Document.get().getElementById("facebook-login").removeFromParent();
+					RootPanel.get().clear();
+					
+					init(Anonym.getObj(session, "authResponse"));
+				}
 			}
 		});
 
@@ -87,13 +95,17 @@ public class Anonymbook implements EntryPoint {
 	}
 
 	private void renderLoginButton() {
+		
 		Document doc = Document.get();
 
 		Element loginButton = doc.createElement("fb:login-button");
 		loginButton.setInnerText(messages.loginText());
-		loginButton.setAttribute("perms", "publish_stream");
+		loginButton.setAttribute("show-face", "true");
+		loginButton.setAttribute("max-rows", "1");
+		loginButton.setAttribute("width", "400");
 
 		DivElement loginDiv = doc.createDivElement();
+		loginDiv.setId("facebook-login");
 		loginDiv.appendChild(loginButton);
 		loginDiv.getStyle().setProperty("margin", "50px auto");
 		loginDiv.getStyle().setProperty("width", "300px");
@@ -103,7 +115,8 @@ public class Anonymbook implements EntryPoint {
 	}
 
 	private void init(JavaScriptObject session) {
-		String uid = Anonym.get(session, "uid");
+		
+		String uid = Anonym.get(session, "userID");
 
 		if (!hasLocale()) {
 			FB.user(uid, new JavaScriptCallback() {
@@ -116,8 +129,7 @@ public class Anonymbook implements EntryPoint {
 			return;
 		}
 		
-		AnonymController controller = new AnonymController(uid, Anonym.get(
-				session, "access_token"));
+		AnonymController controller = new AnonymController(uid, Anonym.get(session, "accessToken"));
 
 		String user = Window.Location.getParameter("anonym_user");
 		String question = Window.Location.getParameter("anonym_question");

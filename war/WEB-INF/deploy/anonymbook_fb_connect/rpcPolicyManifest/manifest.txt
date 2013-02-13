@@ -1,2 +1,0 @@
-# Module anonymbook_fb_connect
-# RPC service class, partial path of RPC policy file

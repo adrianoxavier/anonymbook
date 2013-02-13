@@ -8,10 +8,15 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Pattern;
 
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.codec.binary.Base64;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,6 +37,7 @@ import com.google.appengine.api.datastore.KeyFactory;
 
 @Resource
 @Path("/service")
+@SuppressWarnings("unchecked")
 public class Service {
 
 	private static Logger logger = LoggerFactory.getLogger(Service.class);
@@ -44,11 +50,14 @@ public class Service {
 
 	private Persistence persistence;
 
+	private ObjectMapper mapper;
+		
 	private Map<String, String> sessionData;
 
 	public Service(Result result, HttpServletRequest request) {
 		this.result = result;
 		this.request = request;
+		this.mapper = new ObjectMapper();
 		this.persistence = new Persistence();
 		this.sessionData = new HashMap<String, String>();
 	}
@@ -92,8 +101,7 @@ public class Service {
 		try {
 			Set<String> friends = persistence.getFriends(userId);
 
-			logger.info(format("Usuário %s acessando a lista com %d amigos.",
-					userId, friends.size()));
+			logger.info(format("Usuário %s acessando a lista com %d amigos.", userId, friends.size()));
 
 			result.use(Results.json()).from(friends).serialize();
 
@@ -108,8 +116,7 @@ public class Service {
 		try {
 			Set<String> friends = persistence.getFriends(uid);
 
-			logger.info(format("Usuário %s acessando a lista com %d amigos.",
-					uid, friends.size()));
+			logger.info(format("Usuário %s acessando a lista com %d amigos.", uid, friends.size()));
 
 			result.use(Results.json()).from(friends).serialize();
 
@@ -131,18 +138,14 @@ public class Service {
 		try {
 
 			Set<String> friends = persistence.getFriends(userId);
-			List<String> friendsOnAnonym = Facebook.getFriendsOnAnonym(userId,
-					sessionData.get("access_token"));
+			List<String> friendsOnAnonym = Facebook.getFriendsOnAnonym(userId, sessionData.get("access_token"));
 
 			for (String uid : friendsOnAnonym) {
 				if (!friends.contains(uid)) {
 					anonym.add(uid);
 				}
 			}
-
-			logger.info(format("Usuário %s acessando a lista com %d amigos que"
-					+ " estão no anonymbook e que não o adicionaram.", userId,
-					anonym.size()));
+			logger.info(format("Usuário %s acessando a lista com %d amigos que estão no anonymbook e que não o adicionaram.", userId, anonym.size()));
 
 			result.use(Results.json()).from(anonym).serialize();
 
@@ -161,10 +164,7 @@ public class Service {
 
 		try {
 			persistence.removeFriend(userId, friend);
-
-			logger.info(format("Desfeita a amizade entre %s e %s.", userId,
-					friend));
-
+			logger.info(format("Desfeita a amizade entre %s e %s.", userId, friend));
 			sendSuccess("friend removed");
 
 		} catch (Exception exception) {
@@ -180,15 +180,13 @@ public class Service {
 		if (userId == null) {
 			return;
 		}
-
 		try {
 			Key k = KeyFactory.stringToKey(key);
 			Question question = persistence.getQuestion(k, withTimeAgo, userId);
 
 			logger.info(format("Acesso a pergunta '%s'.", key));
 
-			result.use(Results.json()).from(question).exclude("author")
-					.serialize();
+			result.use(Results.json()).from(question).exclude("author").serialize();
 
 		} catch (Exception exception) {
 			sendError(format("while get question.", exception));
@@ -203,14 +201,10 @@ public class Service {
 		if (userId == null) {
 			return;
 		}
-
 		try {
-			QuestionsMessage message = persistence.getQuestions(userId, limit,
-					withTimeAgo, timestamp, userId);
+			QuestionsMessage message = persistence.getQuestions(userId, limit, withTimeAgo, timestamp, userId);
 
-			logger.info(format(
-					"Acesso a '%d' perguntas feitas ou recebidas por "
-							+ "'%s'.", message.getQuestions().size(), userId));
+			logger.info(format("Acesso a '%d' perguntas feitas ou recebidas por " + "'%s'.", message.getQuestions().size(), userId));
 
 			result.use(Results.json()).from(message).exclude("author")
 					.serialize();
@@ -230,27 +224,23 @@ public class Service {
 			sendError("Invalid request. Not friends!");
 			return false;
 		}
-
 		return true;
 	}
 
 	@Path("/question/made/{withTimeAgo}/{timestamp}/{limit}")
 	public void getMadeQuestion(long timestamp, int limit, boolean withTimeAgo) {
+		
 		String userId = getUserId();
-
 		if (userId == null) {
 			return;
 		}
 
 		try {
-			QuestionsMessage message = persistence.getQuestionsByAuthor(userId,
-					limit, withTimeAgo, timestamp, userId);
+			QuestionsMessage message = persistence.getQuestionsByAuthor(userId, limit, withTimeAgo, timestamp, userId);
 
-			logger.info(format("Acesso a '%d' perguntas feitas por '%s'.",
-					message.getQuestions().size(), userId));
+			logger.info(format("Acesso a '%d' perguntas feitas por '%s'.", message.getQuestions().size(), userId));
 
-			result.use(Results.json()).from(message).exclude("author")
-					.serialize();
+			result.use(Results.json()).from(message).exclude("author").serialize();
 
 		} catch (Exception exception) {
 			sendError(format("while get made questions: %s.", exception));
@@ -258,24 +248,18 @@ public class Service {
 	}
 
 	@Path("/question/made/{recipient}/{withTimeAgo}/{timestamp}/{limit}")
-	public void getMadeQuestion(String recipient, long timestamp, int limit,
-			boolean withTimeAgo) {
+	public void getMadeQuestion(String recipient, long timestamp, int limit, boolean withTimeAgo) {
+		
 		String userId = getUserId();
-
 		if (userId == null) {
 			return;
 		}
-
 		try {
-			QuestionsMessage message = persistence.getQuestions(userId,
-					recipient, limit, withTimeAgo, timestamp, userId);
+			QuestionsMessage message = persistence.getQuestions(userId, recipient, limit, withTimeAgo, timestamp, userId);
 
-			logger.info(format(
-					"Acesso a '%d' perguntas feitas por '%s' para '%s'.",
-					message.getQuestions().size(), userId, recipient));
+			logger.info(format("Acesso a '%d' perguntas feitas por '%s' para '%s'.", message.getQuestions().size(), userId, recipient));
 
-			result.use(Results.json()).from(message).exclude("author")
-					.serialize();
+			result.use(Results.json()).from(message).exclude("author").serialize();
 
 		} catch (Exception exception) {
 			sendError(format("while get made questions: %s.", exception));
@@ -283,23 +267,19 @@ public class Service {
 	}
 
 	@Path("/question/received/{user}/{withTimeAgo}/{timestamp}/{limit}")
-	public void getReceivedQuestion(String user, long timestamp, int limit,
-			boolean withTimeAgo) {
+	public void getReceivedQuestion(String user, long timestamp, int limit, boolean withTimeAgo) {
+		
 		String userId = getUserId();
-
 		if (userId == null) {
 			return;
 		}
 
 		try {
-			QuestionsMessage message = persistence.getQuestionsByRecipient(
-					user, limit, withTimeAgo, timestamp, userId);
+			QuestionsMessage message = persistence.getQuestionsByRecipient(user, limit, withTimeAgo, timestamp, userId);
 
-			logger.info(format("Acesso a '%d' perguntas recebidas por '%s'.",
-					message.getQuestions().size(), user));
+			logger.info(format("Acesso a '%d' perguntas recebidas por '%s'.", message.getQuestions().size(), user));
 
-			result.use(Results.json()).from(message).exclude("author")
-					.serialize();
+			result.use(Results.json()).from(message).exclude("author").serialize();
 
 		} catch (Exception exception) {
 			sendError(format("while get received questions: %s.", exception));
@@ -322,13 +302,11 @@ public class Service {
 
 			persistence.save(q);
 
-			logger.info(format("Nova pergunta, de '%s' para '%s'.", userId,
-					recipient));
+			logger.info(format("Nova pergunta, de '%s' para '%s'.", userId, recipient));
 
 			// Notifica o usuario que tem uma nova pergunta.
 			if (recipient != null) {
-				Facebook.sendAppNotify(recipient,
-						"New anonym question for you.");
+				Facebook.sendAppNotify(recipient, "New anonym question for you.");
 
 				sendSuccess("Question made.");
 			} else {
@@ -377,8 +355,7 @@ public class Service {
 
 			// Notifica o autor da pergunta que houve uma resposta.
 			if (newAnswer == null || !q.getAuthor().equals(userId)) {
-				Facebook.sendAppNotify(q.getAuthor(),
-						"Your question has been answered");
+				Facebook.sendAppNotify(q.getAuthor(), "Your question has been answered");
 			}
 
 			logger.info(format("Respondendo a pergunta '%s'.", key));
@@ -410,9 +387,7 @@ public class Service {
 			Question q = persistence.getQuestion(k, false, userId);
 
 			// apenas o autor ou o destinatario podem remover a pergunta.
-			if (q == null
-					|| (!userId.equals(q.getRecipient()) && !userId.equals(q
-							.getAuthor()))) {
+			if (q == null || (!userId.equals(q.getRecipient()) && !userId.equals(q.getAuthor()))) {
 				sendError("Invalid request: this question is not for you.");
 				return;
 			}
@@ -495,12 +470,13 @@ public class Service {
 		Cookie[] cookies = request.getCookies();
 		if (cookies != null) {
 			for (Cookie cookie : cookies) {
-				if (cookie.getName().equals("fbs_" + appId)) {
+				if (cookie.getName().equals("fbsr_" + appId)) {
 					sessionData = extractDataFromCookie(cookie.getValue());
 				}
 			}
 		}
-		String uid = sessionData.get("uid");
+		
+		String uid = sessionData.get("user_id");
 		if (uid == null) {
 			sendError("not logged user.");
 		}
@@ -515,13 +491,49 @@ public class Service {
 	 * @return um mapa com os dados do cookie.
 	 */
 	private Map<String, String> extractDataFromCookie(String cookieValue) {
-		HashMap<String, String> data = new HashMap<String, String>();
-		String[] fields = cookieValue.split("\\&");
-		for (String field : fields) {
-			String[] keyValue = field.split("\\=");
-			data.put(keyValue[0], keyValue[1]);
+		
+		Map<String, String> data = new HashMap<String, String>();
+		try {
+			data = validate(cookieValue, "91cac1dffb6c379194ef24cbcad46016");
+		} catch (Exception exception) {
+			logger.error(String.format("Durante o parse de dados dos cookies. %s.", exception));
 		}
 		return data;
 	}
+	
+	public static String decodeBase64(String encoded) throws Exception {
+        return new String(Base64.decodeBase64(encoded.getBytes("UTF-8")));
+    }
+	
+	public Map<String, String> validate(String value, String secret) throws Exception {
+		 
+        String[] splits = value.split(Pattern.quote("."));
+        String signature = splits[0];
+        String encoded = splits[1];
+        String jsonString = decodeBase64(encoded);
+        String signature2 = digest(encoded, secret);
+        
+        if (!signature2.equals(signature)) {
+            return null;
+        }
+        return mapper.readValue(jsonString, Map.class);
+    }
+	 
+	 public String digest(String encoded, String secret) {
+        try {
+        	
+            Mac hmacSha256 = Mac.getInstance("HmacSHA256");
+            hmacSha256.init(new SecretKeySpec(secret.getBytes("UTF-8"), "HmacSHA256"));
+            
+            byte[] mac = hmacSha256.doFinal(encoded.getBytes("UTF-8"));
+            byte[] base64 = Base64.encodeBase64(mac);
+            String s = new String(base64, "UTF-8");
+            
+            return s.replace("/", "_").replace("+", "-").replace("=", "");
+            
+        } catch (Exception exception) {
+            throw new RuntimeException("Invalid Data", exception);
+        }
+    }
 
 }

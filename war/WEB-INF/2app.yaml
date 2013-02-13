@@ -1,0 +1,31 @@
+application: anonymbook
+version: 2
+runtime: java
+
+precompilation_enabled: true
+sessions_enabled: true
+threadsafe: true
+ssl_enabled: true
+
+env_variables:
+    DEFAULT_ENCODING: UTF-8
+
+context_params:
+    br.com.caelum.vraptor.packages: br.com.caelum.vraptor.gae
+
+handlers:
+  - url: /**
+    name: vraptor
+    filter: br.com.caelum.vraptor.VRaptor
+
+static_files:
+  - include: /**
+  - include: /**.nocache.*
+    expiration: 0s
+  - include: /**.cache.*
+    expiration: 365d
+  - exclude: /**.gwt.rpc
+
+inbound_services:
+- warmup
+

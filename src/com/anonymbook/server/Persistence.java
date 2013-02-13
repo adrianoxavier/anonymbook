@@ -28,6 +28,7 @@ import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.SortDirection;
 
+@SuppressWarnings("deprecation")
 public class Persistence {
 
 	private static EntityManagerFactory factory = javax.persistence.Persistence
@@ -198,11 +199,10 @@ public class Persistence {
 
 		}
 	}
-
+	
 	private void checkQuestionTimestampUsage(long timestamp, Query query) {
 		if (timestamp > 0) {
-			query.addFilter("questionTimestamp",
-					Query.FilterOperator.LESS_THAN, timestamp);
+			query.addFilter("questionTimestamp", Query.FilterOperator.LESS_THAN, timestamp);
 		}
 	}
 
