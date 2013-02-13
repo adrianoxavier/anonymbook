@@ -197,8 +197,7 @@ public class QuestionsController implements QuestionCallBack {
 
 	private void handleShare(QuestionModel model, String name) {
 
-		String link = "http://apps.facebook.com/anonymbook?anonym_user="
-				+ model.getRecipientId();
+		String link = "https://apps.facebook.com/anonymbook?anonym_user=" + model.getRecipientId();
 		String picture = "https://lh5.googleusercontent.com/_n1Zhj7j8juY/TbHIjwugWoI/AAAAAAAAAGE/_XcGrLTeChs/s800/anonym-questionr.png";
 		String detail = messages.answeredBy(name);
 		String answer = model.getAnswersList().get(0).getAnswer();

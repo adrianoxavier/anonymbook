@@ -88,7 +88,7 @@
 	</ui:style>
 
 	<g:HTMLPanel styleName="{style.anonym-top}">
-		<a href="http://www.facebook.com/apps/application.php?id=100923886651872"
+		<a href="https://www.facebook.com/apps/application.php?id=100923886651872"
 			class="{style.anonym-top-link}">
 			<div class="{style.anonym-top-left}">
 				<g:Image resource="{icon}" />
@@ -102,7 +102,7 @@
 				<label class="{style.anonym-top-label}"> on Facebook </label>
 			</a>
 			<iframe
-				src="http://www.facebook.com/plugins/like.php?href=apps.facebook.com/anonymbook&amp;layout=button_count&amp;show_faces=true&amp;width=450&amp;action=like&amp;font=lucida+grande&amp;colorscheme=light&amp;height=20"
+				src="https://www.facebook.com/plugins/like.php?href=apps.facebook.com/anonymbook&amp;layout=button_count&amp;show_faces=true&amp;width=450&amp;action=like&amp;font=lucida+grande&amp;colorscheme=light&amp;height=20"
 				scrolling="no" frameborder="0" allowTransparency="true"
 				class="{style.anonym-top-iframe}">
 			</iframe>

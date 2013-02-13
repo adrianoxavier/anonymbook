@@ -48,11 +48,7 @@ public final class TwitterController {
 		} else {
 			text = question.substring(0, size - more.length()) + more;
 		}
-
-		String url = "http://twitter.com/share?_=" + new Date().getTime()
-				+ "&count=none" + "&text=" + URL.encode(text) + suffix
-				+ "&url=";
-
+		String url = "https://twitter.com/share?_=" + new Date().getTime() + "&count=none" + "&text=" + URL.encode(text) + suffix + "&url=";
 		handleTweet(tweetButton, url);
 	}
 

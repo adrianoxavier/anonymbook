@@ -89,7 +89,6 @@ public class FB {
 		public static native void subscribe(String name, JavaScriptCallback callback)
 		/*-{
 			$wnd.FB.Event.subscribe(name, function(response) {
-				console.log('subscribe: ', response);
 				callback.@com.anonymbook.client.event.JavaScriptCallback::onEvent(Lcom/google/gwt/core/client/JavaScriptObject;)(response);
 			});
 		}-*/;

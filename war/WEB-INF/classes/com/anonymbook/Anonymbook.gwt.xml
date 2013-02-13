@@ -23,14 +23,8 @@
 	<set-configuration-property name="locale.cookie" value="anonym_locale"/>
 	<set-configuration-property name="UiBinder.useSafeHtmlTemplates" value="true" /> 
 	
-	<stylesheet	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/smoothness/jquery-ui.css" />
+	<script src="https://connect.facebook.net/en_US/all.js" />
 	
-	<script src="http://connect.facebook.net/en_US/all.js" />
-	
-	<script	src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js" />
-	<script	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/jquery-ui.min.js" />
-	<script	src="http://ajax.googleapis.com/ajax/libs/mootools/1.3.1/mootools.js" />
-
 	<entry-point class="com.anonymbook.client.Anonymbook" />
 
 </module>

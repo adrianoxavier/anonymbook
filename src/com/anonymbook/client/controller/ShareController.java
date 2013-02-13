@@ -19,8 +19,7 @@ public final class ShareController {
 	public static void share(QuestionModel model, String userId,
 			BooleanCallback shareCallback) {
 
-		String link = "http://apps.facebook.com/anonymbook?anonym_question="
-				+ model.getKey() + "&anonym_user=" + userId;
+		String link = "https://apps.facebook.com/anonymbook?anonym_question=" + model.getKey() + "&anonym_user=" + userId;
 		String picture = "https://lh5.googleusercontent.com/_n1Zhj7j8juY/TbHJtMRTIFI/AAAAAAAAAGM/V7hYBiRF97k/s800/anonym-answer.png";
 		String detail = messages.questionWithAnonymousAnswers();
 		String actionName = messages.answerAnonymously();

@@ -88,7 +88,7 @@ public class Anonymbook implements EntryPoint {
 		String requests = Window.Location.getParameter("request_ids");
 
 		if (ref != null && requests != null) {
-			Anonym.redirect("http://www.facebook.com/?sk=apps");
+			Anonym.redirect("https://www.facebook.com/appcenter/requests");
 			return true;
 		}
 		return false;

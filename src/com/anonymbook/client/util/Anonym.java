@@ -159,7 +159,7 @@ public final class Anonym {
 		var key="R_f65cfdb209f6dbe968abbec33963ce39";
 		
 		$wnd.$.ajax({
-			url : "http://api.bit.ly/v3/shorten",
+			url : "https://api-ssl.bitly.com/v3/shorten",
 			data : {
 				longUrl : url,
 				apiKey : key,

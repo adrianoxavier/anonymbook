@@ -29,7 +29,7 @@ public class AnonymTop extends Composite {
 	public AnonymTop() {
 		initWidget(uiBinder.createAndBindUi(this));
 		
-		reviewLink.setHref("http://www.facebook.com/apps/application.php?id=100923886651872&sk=app_6261817190");
+		reviewLink.setHref("https://www.facebook.com/apps/application.php?id=100923886651872&sk=app_6261817190");
 		reviewLabel.setInnerText(AnonymMessages.instance.rating());
 		reviewLabelEnd.setInnerText("!");
 	}

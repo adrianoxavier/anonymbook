@@ -13,9 +13,7 @@ public class FacebookConnect implements EntryPoint {
 
 	@Override
 	public void onModuleLoad() {
-
-		injectJsSource("http://connect.facebook.net/" + getLocale()
-				+ "/all.js");
+		injectJsSource("https://connect.facebook.net/" + getLocale() + "/all.js");
 	}
 
 	private String getLocale() {
